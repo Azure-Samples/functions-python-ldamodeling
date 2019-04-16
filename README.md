@@ -1,13 +1,16 @@
 ---
 topic: sample
 languages:
-  - python
+    - python
 products:
-  - azure-functions
-  
+    - azure-functions
+---
+
+---
 services: functions, blob-storage
 platforms: python
 author: priyaananthasankar
+
 ---
 
 # Topic Classification using Latent Dirichlet Allocation
