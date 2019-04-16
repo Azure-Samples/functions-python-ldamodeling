@@ -17,7 +17,7 @@ The sample uses a HttpTrigger to accept a set of URL's as article links or a dat
 
 This sample can be deployed using this button:
 
-
+[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/)
 
 This deploys the following:
 
