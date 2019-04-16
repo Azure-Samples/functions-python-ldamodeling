@@ -4,10 +4,7 @@ languages:
     - python
 products:
     - azure-functions
----
----
-services: functions, blob-storage
-platforms: python
+    - azure-storage
 author: priyaananthasankar
 ---
 
