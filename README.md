@@ -32,11 +32,14 @@ The sample uses a HttpTrigger to accept a dataset from a blob and performs the f
 # Test Function App
 
 - Send the following body in a HTTP POST request
-```{
+```
+{
     "container_name" : "docblob",
     "num_topics" : "5" 
-   }
+}
 ```
+- Click on response HTML link to see the following visualization
+
 
 # References
 
