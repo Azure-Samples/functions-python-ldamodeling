@@ -1,9 +1,10 @@
-# Topic Classification using Latent Dirichlet Allocation
 ---
 services: functions, blob-storage
 platforms: python
 author: priyaananthasankar
 ---
+
+# Topic Classification using Latent Dirichlet Allocation
 
 Latent Dirichlet Allocation (LDA) is a statistical model that classifies a document as a mixture of topics.
 The sample uses a HttpTrigger to accept a set of URL's as article links or a dataset from a blob and performs the following tasks:
