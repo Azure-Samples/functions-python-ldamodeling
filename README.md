@@ -46,8 +46,10 @@ The sample uses a HttpTrigger to accept a dataset from a blob and performs the f
     "num_topics" : "5" 
 }
 ```
-- Click on response HTML link to see the following visualization
+- Click the response HTML link to see the following visualization
 
+Inline-style: 
+![alt text](https://github.com/Azure-Samples/functions-python-ldamodeling/blob/master/assets/pyldavis.png "PyLDAVis Topic Visualization")
 
 # References
 
