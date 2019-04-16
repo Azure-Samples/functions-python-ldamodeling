@@ -15,12 +15,31 @@ The sample uses a HttpTrigger to accept a set of URL's as article links or a dat
 
 # How to Deploy
 
+## Prerequisites
+
+- Python 3 should be installed
+
+## Steps
+
+- Click Deploy to Azure Button to deploy resources
 [![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/)
+
+- Run `python3 download.py` to download dataset, tokenizers and stopwords from NLTK
+
+- Run `deploy.sh` to deploy function code and content to blob containers
 
 ## Artifacts Deployed
 
 - Python functionality in Linux Consumption Plan
 - Blob containers and storage
+
+# Test Function App
+
+- Send the following body in a HTTP POST request
+{
+    "container_name" : "name of the blob container having the dataset",
+    "num_topics" : "5" 
+}
 
 # References
 
