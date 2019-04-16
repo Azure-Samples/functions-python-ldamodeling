@@ -47,7 +47,10 @@
                   "apiVersion": "2018-03-01-preview",
                   "dependsOn": [
                     "[parameters('storageName')]"
-                  ]
+                  ],
+		  "properties" : {
+	            "publicAccess" : "Container"
+		  }
                 },
                 {
                     "name": "[concat('default/', variables('container2'))]",
@@ -55,7 +58,10 @@
                     "apiVersion": "2018-03-01-preview",
                     "dependsOn": [
                       "[parameters('storageName')]"
-                    ]
+                    ],
+		    "properties" : {
+	              "publicAccess" : "Container"
+		    }
                 },
                 {
                     "name": "[concat('default/', variables('container3'))]",
@@ -63,7 +69,10 @@
                     "apiVersion": "2018-03-01-preview",
                     "dependsOn": [
                       "[parameters('storageName')]"
-                    ]
+                    ],
+		    "properties" : {
+		      "publicAccess" : "Container"
+		    }
                 }
               ]
         },
