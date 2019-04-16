@@ -6,7 +6,7 @@ author: priyaananthasankar
 
 # Topic Classification using Latent Dirichlet Allocation
 
-Latent Dirichlet Allocation (LDA) is a statistical model that classifies a document as a mixture of topics.
+[Latent Dirichlet Allocation](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation) (LDA) is a statistical model that classifies a document as a mixture of topics.
 The sample uses a HttpTrigger to accept a set of URL's as article links or a dataset from a blob and performs the following tasks:
  - performs tokenization of the entire document using NLTK
  - removes stop words and performs lemmatization of the document using NLTK.
@@ -28,6 +28,7 @@ This deploys the following:
 - [Natural Language Toolkit](https://www.nltk.org/)
 - [Gensim](https://radimrehurek.com/gensim/)
 - [PyLDAVis](https://github.com/bmabey/pyLDAvis)
+
 
 
 
