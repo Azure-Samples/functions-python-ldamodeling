@@ -13,13 +13,15 @@ The sample uses a HttpTrigger to accept a dataset from a blob and performs the f
  - Classifies documents into topics using LDA API's from gensim Python library
  - Returns a visualization of topics from the dataset using PyLDAVis Python library
 
-# Deployment
+# Getting Started
 
-## Prerequisites
+## Deploy to Azure
+
+### Prerequisites
 
 - Install Python 3.6+
 
-## Steps
+### Steps
 
 - Click Deploy to Azure Button to deploy resources
 
@@ -29,7 +31,7 @@ The sample uses a HttpTrigger to accept a dataset from a blob and performs the f
 
 - Run `deploy.sh` to deploy function code and content to blob containers
 
-# Test Function App
+## Test
 
 - Send the following body in a HTTP POST request
 ```
