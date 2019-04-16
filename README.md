@@ -1,57 +1,24 @@
-# Project Name
+# Topic Classification using Latent Dirichlet Allocation
+---
+services: functions, blob-storage
+platforms: python
+author: priyaananthasankar
+---
 
-(short, 1-3 sentenced, description of the project)
+Latent Dirichlet Allocation (LDA) is a statistical model that classifies a document as a mixture of topics.
+The sample uses a HttpTrigger to accept a set of URL's as article links or a dataset from a blob and performs the following tasks:
+ - performs tokenization of the entire document using NLTK.
+ - removes stop words and performs lemmatization of the document using NLTK.
+ - topic models the documents using LDA API's using Python gensim library.
+ - Returns a HTML link of the visualized topics through PyLDAVis library.
 
-## Features
+# How to Deploy
 
-This project framework provides the following features:
-
-* Feature 1
-* Feature 2
-* ...
-
-## Getting Started
-
-### Prerequisites
-
-(ideally very short, if any)
-
-- OS
-- Library version
-- ...
-
-### Installation
-
-(ideally very short)
-
-- npm install [package name]
-- mvn install
-- ...
-
-### Quickstart
-(Add steps to get up and running quickly)
-
-1. git clone [repository clone url]
-2. cd [respository name]
-3. ...
+This sample can be deployed using this button:
 
 
-## Demo
+This deploys the following:
 
-A demo app is included to show how to use the project.
+- Python functionality in Linux Consumption Plan
+- Blob containers and storage
 
-To run the demo, follow these steps:
-
-(Add steps to start up the demo)
-
-1.
-2.
-3.
-
-## Resources
-
-(Any additional resources or related projects)
-
-- Link to supporting information
-- Link to similar sample
-- ...
