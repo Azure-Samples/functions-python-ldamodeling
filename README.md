@@ -10,8 +10,8 @@ author: priyaananthasankar
 The sample uses a HttpTrigger to accept a set of URL's as article links or a dataset from a blob and performs the following tasks:
  - Tokenization of the entire document using NLTK
  - Removes stop words and performs lemmatization of the document using NLTK.
- - Classifies the document into topics using LDA API's using Python gensim library
- - Returns a HTML link of the visualized topics through PyLDAVis library
+ - Classifies the document into topics using LDA API's from gensim Python library
+ - Returns a visualization of topics using PyLDAVis Python library
 
 # How to Deploy
 
