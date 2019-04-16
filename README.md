@@ -5,12 +5,10 @@ languages:
 products:
     - azure-functions
 ---
-
 ---
 services: functions, blob-storage
 platforms: python
 author: priyaananthasankar
-
 ---
 
 # Topic Classification using Latent Dirichlet Allocation
