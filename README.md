@@ -37,7 +37,9 @@ The sample uses a HttpTrigger to accept a dataset from a blob and performs the f
 
 - Run `deploy.sh` to deploy function code and content to blob containers
 
-- Run `func azure functionapp publish [functionAppName] --build-native-deps` 
+- Deploy Function App
+  - [Create/Activate virtual environment](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-function-python#create-and-activate-a-virtual-environment)
+  - Run `func azure functionapp publish [functionAppName] --build-native-deps` 
 
 ## Test
 
