@@ -33,16 +33,18 @@ The sample uses a HttpTrigger to accept a dataset from a blob and performs the f
 
 [![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/)
 
-- Run `python3 download.py` to download dataset, tokenizers and stopwords from NLTK
+- Run `python3 download.py` to download dataset, tokenizers and stopwords from NLTK. Typically this will get downloaded to $HOME/nltk_data
 
 - Run `deploy.sh` to deploy function code and content to blob containers
+
+- Run `func azure functionapp publish [functionAppName] --build-native-deps` 
 
 ## Test
 
 - Send the following body in a HTTP POST request
 ```
 {
-    "container_name" : "docblob",
+    "container_name" : "dataset",
     "num_topics" : "5" 
 }
 ```
@@ -57,9 +59,4 @@ Inline-style:
 - [Natural Language Toolkit](https://www.nltk.org/)
 - [Gensim](https://radimrehurek.com/gensim/)
 - [PyLDAVis](https://github.com/bmabey/pyLDAvis)
-
-
-
-
-
 

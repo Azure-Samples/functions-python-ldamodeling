@@ -5,6 +5,7 @@ print("Downloading prequisites...")
 nltk.download('gutenberg')
 nltk.download('punkt')
 nltk.download('stopwords')
+nltk.download('wordnet')
 
 # Get id's of any dataset you want
 def get_dataset(prefixStr):
