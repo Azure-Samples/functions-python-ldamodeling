@@ -29,7 +29,7 @@ The sample uses a HttpTrigger to accept a dataset from a blob and performs the f
 
 ### Steps
 
-- Click Deploy to Azure Button to deploy resources
+- **Skip this step for now..Does not work with private repo. Try alternate method with AZ CLI below** Click Deploy to Azure Button to deploy resources
 
 [![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/)
 
