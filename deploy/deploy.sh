@@ -13,17 +13,19 @@ read subscriptionId
 echo "Provide path to nltk_data"
 read basePathToNltkData
 
-echo "Provide storage key for ldamodeling101 storage account"
+echo "Provide storage account name"
+read storageName
+
+echo "Provide storage key for the storage account"
 read storageKey
 
-storageName=ldamodel101
 cd $basePathToNltkData
 az login --service-principal --username $servicePrincipalAppId --password $servicePrincipalPassword --tenant $servicePrincipalTenantID
 az account set --subscription $subscriptionId
 
 # Uploading files to blob container
 
-export AZURE_STORAGE_ACCOUNT=ldamodeling101
+export AZURE_STORAGE_ACCOUNT=$storageName
 export AZURE_STORAGE_KEY=$storageKey
 
 echo "Uploading dataset..."
