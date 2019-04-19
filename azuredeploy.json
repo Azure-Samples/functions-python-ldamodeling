@@ -2,10 +2,10 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "functionapp": {
-            "defaultValue": "ldamodeling",
-            "type": "String"
-        },
+	"uniqueResourceNameSuffix" : {
+	    "type" : "string",
+	    "defaultValue" : "[uniqueString(subscription().subscriptionId, resourceGroup().id)]"
+	},
         "config_web_name": {
             "defaultValue": "web",
             "type": "String"
@@ -21,10 +21,11 @@
     },
     "variables": {
         "storageAccountid": "[concat(resourceGroup().id,'/providers/','Microsoft.Storage/storageAccounts/', parameters('storageName'))]",
+	"functionapp" : "[concat('lda',parameters('uniqueResourceNameSuffix'))]",
         "container1" : "dataset",
         "container2" : "ldamodel",
         "container3" : "nltk",
-	    "siteName1" : "[concat(parameters('functionapp'),'.azurewebsites.net')]"
+	    "siteName1" : "[concat(variables('functionapp'),'.azurewebsites.net')]"
     },
     "resources": [
         {
@@ -99,14 +100,14 @@
         {
             "type": "Microsoft.Web/sites",
             "kind": "functionapp,linux",
-            "name": "[parameters('functionapp')]",
+            "name": "[variables('functionapp')]",
             "apiVersion": "2016-08-01",
             "location": "West US",
             "properties": {
                 "enabled": true,
                 "hostNameSslStates": [
                     {
-                        "name": "[concat(parameters('functionapp'),'.azurewebsites.net')]",
+                        "name": "[concat(variables('functionapp'),'.azurewebsites.net')]",
                         "sslState": "Disabled",
                         "hostType": "Standard"
                     }
@@ -129,7 +130,7 @@
                       },
                       {
                         "name": "WEBSITE_CONTENTSHARE",
-                        "value": "[parameters('functionapp')]"
+                        "value": "[variables('functionapp')]"
                       },
                       {
                         "name": "FUNCTIONS_EXTENSION_VERSION",
@@ -168,7 +169,7 @@
         },
         {
             "type": "Microsoft.Web/sites/config",
-            "name": "[concat(parameters('functionapp'), '/', parameters('config_web_name'))]",
+            "name": "[concat(variables('functionapp'), '/', parameters('config_web_name'))]",
             "apiVersion": "2016-08-01",
             "location": "West US",
             "properties": {
@@ -197,12 +198,12 @@
                 "vnetName": ""
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('functionapp'))]"
+                "[resourceId('Microsoft.Web/sites', variables('functionapp'))]"
             ]
         },
         {
             "type": "Microsoft.Web/sites/hostNameBindings",
-            "name": "[concat(parameters('functionapp'), '/', variables('siteName1'))]",
+            "name": "[concat(variables('functionapp'), '/', variables('siteName1'))]",
             "apiVersion": "2016-08-01",
             "location": "West US",
             "properties": {
@@ -210,7 +211,7 @@
                 "hostNameType": "Verified"
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('functionapp'))]"
+                "[resourceId('Microsoft.Web/sites', variables('functionapp'))]"
             ]
         }
     ]
