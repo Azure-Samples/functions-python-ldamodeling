@@ -13,10 +13,11 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     else:
         container_name = req_body.get('container_name')
         num_topics = req_body.get('num_topics')
-        lda_blob_url = classifier.classify(container_name,num_topics)
-        
+        urls = classifier.classify(container_name,num_topics)
+        headers_dict={}
+        headers_dict["content-type"] = "application/json"
         if container_name:
-            return func.HttpResponse(lda_blob_url)
+            return func.HttpResponse(json.dumps(urls),status_code=200,headers=headers_dict)
         else:
             return func.HttpResponse(
                 "Please pass a container name",status_code=400)

@@ -58,31 +58,24 @@ def classify(container_name, num_topics):
     pickled_docmap = pickle.dumps(doc_map)
 
     # Store token data and document map for gensim
-    block_blob_service.create_blob_from_bytes(container_models, "token_data" + container_name, pickled_token_data)
-    block_blob_service.create_blob_from_bytes(container_models, "docmap" + container_name, pickled_docmap)
+    block_blob_service.create_blob_from_bytes(container_models, "token_data", pickled_token_data)
+    block_blob_service.create_blob_from_bytes(container_models, "docmap", pickled_docmap)
 
     dictionary = corpora.Dictionary(token_data)
     corpus = [dictionary.doc2bow(text) for text in token_data]
 
     # Train LDA Model
     ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics = num_topics, id2word=dictionary, passes=10)
-    
-    # Visualize through PyLDAVis and store HTML
-    lda_blob_url = "https://" + GUTENBERG_BLOB_ACCOUNT_NAME + ".blob.core.windows.net/" + container_models + "/" + "ldamodel.html"
-    settings = ContentSettings(content_type='text/html')
-    #vis = pyLDAvis.gensim.prepare(ldamodel, corpus, dictionary)
-    #p_data = pyLDAvis.prepared_data_to_html(vis)
-
-    #block_blob_service.create_blob_from_text(container_models, 'ldamodel.html', p_data)
-    
-    # Store HTML back in blob
-    #
-    #block_blob_service.set_blob_properties(container_models, 'ldamodel.html', content_settings=settings)
+    pickled_ldamodel = pickle.dumps(ldamodel)
+    block_blob_service.create_blob_from_bytes(container_models, 'ldamodel', pickled_ldamodel)
 
     # Construct LDA Blob URL
-    #lda_blob_url = "https://" + GUTENBERG_BLOB_ACCOUNT_NAME + ".blob.core.windows.net/" + container_models + "/" + "ldamodel.html"
-    #return lda_blob_url
-    return lda_blob_url
+    lda_model_url = "https://" + GUTENBERG_BLOB_ACCOUNT_NAME + ".blob.core.windows.net/" + container_models + "/" + "ldamodel"
+    token_data_url = "https://" + GUTENBERG_BLOB_ACCOUNT_NAME + ".blob.core.windows.net/" + container_models + "/" + "token_data"
+    response = {}
+    response["lda_model_url"] = lda_model_url
+    response["token_data_url"] = token_data_url
+    return response
 
 def lemmatize(word):
     lemma = wn.morphy(word)

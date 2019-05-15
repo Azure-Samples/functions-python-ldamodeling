@@ -26,22 +26,27 @@ The sample uses a HttpTrigger to accept a dataset from a blob and performs the f
 - Install Python 3.6+
 - Install [Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#v2)
 - Install Docker
+- Note: If run on Windows, use Ubuntu WSL to run deploy script
 
 ### Steps
 
-- **Skip this step for now..Does not work with private repo. Try alternate method with AZ CLI below** Click Deploy to Azure Button to deploy resources
+- Click Deploy to Azure Button to deploy resources
 
 [![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/)
 
-- **Alternate AZ CLI Deployment**
+or
+
+- Deploy through Azure CLI
     - Open AZ CLI and run `az group create -l [region] -n [resourceGroupName]` to create a resource group in your Azure subscription (i.e. [region] could be westus2, eastus, etc.)
-    - Run `az group deployment create --name [deploymentName] --resource-group [resourceGroupName] --template-file azuredeploy.json --parameters parameters.json`
+    - Run `az group deployment create --name [deploymentName] --resource-group [resourceGroupName] --template-file azuredeploy.json`
 
 - Run `pip install nltk` to install the NLTK Python package
 
-- Run `python3 download.py` to download dataset, tokenizers and stopwords from NLTK. Typically this will get downloaded to $HOME/nltk_data
+- Run `python3 deploy/download.py` to download dataset, tokenizers and stopwords from NLTK. Typically this will get downloaded to $HOME/nltk_data
 
-- Run `deploy.sh` to deploy function code and content to blob containers
+- Make sure you have a service principal created. Follow instructions [here](https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli?view=azure-cli-latest)
+
+- Run `sh deploy/deploy.sh` (in Ubuntu WSL or any shell) to deploy function code and content to blob containers. 
 
 - Deploy Function App
   - [Create/Activate virtual environment](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-function-python#create-and-activate-a-virtual-environment)
@@ -56,7 +61,19 @@ The sample uses a HttpTrigger to accept a dataset from a blob and performs the f
     "num_topics" : "5" 
 }
 ```
-- Click the response HTML link to see the following visualization
+- Sample response
+```
+{
+    "lda_model_url": "https://ldamdlstore.blob.core.windows.net/ldamodel/ldamodel",
+    "token_data_url": "https://ldamdlstore.blob.core.windows.net/ldamodel/token_data"
+}
+```
+
+- Visualizing topics through PyLDAVis
+
+  - Open the jupyter notebook VisualizeTopics.ipynb file using instructions [here](https://jupyter-notebook-beginner-guide.readthedocs.io/en/latest/execute.html)
+
+  - In the notebook, plugin values from sample response for LDA_MODEL_BLOB_URL and TOKEN_DATA_URL
 
 Inline-style: 
 ![alt text](https://github.com/Azure-Samples/functions-python-ldamodeling/blob/master/assets/pyldavis.png "PyLDAVis Topic Visualization")
