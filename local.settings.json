@@ -1,0 +1,11 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "AzureWebJobsStorage": "{AzureWebJobsStorage}",
+    "GutenbergBlobAccountName":"{storage account name}",
+    "GutenbergBlobAccountKey":"{storage account key}",
+    "NltkPunktSentenceTokenizer":"{blob url of sentence tokenizer}",
+    "NltkStopWords":"{blob url of stop words}"
+  }
+}
