@@ -4,8 +4,6 @@ __pycache__/
 *$py.class
 
 # Functions metadata
-local.settings.json
-host.json
 .env
 
 # C extensions
@@ -107,3 +105,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+worker_env
+.python_packages
+functions-python-ldamodeling.zip
