@@ -12,6 +12,7 @@ description: "The sample uses a HttpTrigger to accept a dataset from a blob and 
 # Topic Classification using Latent Dirichlet Allocation
 
 [Latent Dirichlet Allocation](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation) (LDA) is a statistical model that classifies a document as a mixture of topics.
+
 The sample uses a HttpTrigger to accept a dataset from a blob and performs the following tasks:
  - Tokenization of the entire set of documents using NLTK
  - Removes stop words and performs lemmatization on the documents using NLTK.
