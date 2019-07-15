@@ -1,11 +1,12 @@
 ---
 topic: sample
 languages:
-    - python
+- python
 products:
-    - azure-functions
-    - azure-storage
-author: priyaananthasankar
+- azure
+- azure-functions
+- azure-storage
+description: "The sample uses a HttpTrigger to accept a dataset from a blob and performs a set of tasks."
 ---
 
 # Topic Classification using Latent Dirichlet Allocation
