@@ -82,7 +82,7 @@ Inline-style:
 
 # References
 
-- [Create your first Python Function](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-function-python)
+- [Create your first Python Function](https://docs.microsoft.com/azure/azure-functions/functions-create-first-function-python)
 - [Natural Language Toolkit](https://www.nltk.org/)
 - [Gensim](https://radimrehurek.com/gensim/)
 - [PyLDAVis](https://github.com/bmabey/pyLDAvis)
