@@ -26,7 +26,7 @@ The sample uses a HttpTrigger to accept a dataset from a blob and performs the f
 ### Prerequisites
 
 - Install Python 3.6+
-- Install [Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#v2)
+- Install [Functions Core Tools](https://docs.microsoft.com/azure/azure-functions/functions-run-local#v2)
 - Install Docker
 - Note: If run on Windows, use Ubuntu WSL to run deploy script
 
