@@ -24,6 +24,7 @@ _nltk_stopwords.extend(['could','would','still','shall'])
 container_models = "ldamodel"
 
 def classify(container_name, num_topics):
+    nltk.download('wordnet')
     # List Blobs in the container
     block_blob_service = BlockBlobService(account_name=GUTENBERG_BLOB_ACCOUNT_NAME, 
                                           account_key=GUTENBERG_BLOB_ACCOUNT_KEY) 
