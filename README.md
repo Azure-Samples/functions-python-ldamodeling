@@ -19,18 +19,18 @@ The sample uses a HttpTrigger to accept a dataset from a blob and performs the f
  - Classifies documents into topics using LDA API's from gensim Python library
  - Returns a visualization of topics from the dataset using PyLDAVis Python library
 
-# Getting Started
+## Getting Started
 
-## Deploy to Azure
+### Deploy to Azure
 
-### Prerequisites
+#### Prerequisites
 
 - Install Python 3.6+
 - Install [Functions Core Tools](https://docs.microsoft.com/azure/azure-functions/functions-run-local#v2)
 - Install Docker
 - Note: If run on Windows, use Ubuntu WSL to run deploy script
 
-### Steps
+#### Steps
 
 - Click Deploy to Azure Button to deploy resources
 
@@ -54,7 +54,7 @@ or
   - [Create/Activate virtual environment](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-function-python#create-and-activate-a-virtual-environment)
   - Run `func azure functionapp publish [functionAppName] --build-native-deps` 
 
-## Test
+### Test
 
 - Send the following body in a HTTP POST request
 ```json
@@ -80,7 +80,7 @@ or
 Inline-style: 
 ![alt text](https://github.com/Azure-Samples/functions-python-ldamodeling/blob/master/assets/pyldavis.png "PyLDAVis Topic Visualization")
 
-# References
+## References
 
 - [Create your first Python Function](https://docs.microsoft.com/azure/azure-functions/functions-create-first-function-python)
 - [Natural Language Toolkit](https://www.nltk.org/)
