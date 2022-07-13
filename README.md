@@ -40,7 +40,7 @@ or
 
 - Deploy through Azure CLI
     - Open AZ CLI and run `az group create -l [region] -n [resourceGroupName]` to create a resource group in your Azure subscription (i.e. [region] could be westus2, eastus, etc.)
-    - Run `az group deployment create --name [deploymentName] --resource-group [resourceGroupName] --template-file azuredeploy.json`
+    - Run `az deployment group create --name [deploymentName] --resource-group [resourceGroupName] --template-file azuredeploy.json`
 
 - Run `pip install nltk` to install the NLTK Python package
 

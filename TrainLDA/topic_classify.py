@@ -9,8 +9,7 @@ from nltk.corpus import wordnet as wn
 from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.tokenize.treebank import TreebankWordTokenizer
 from nltk import word_tokenize
-from azure.storage.blob import ContentSettings
-from azure.storage.blob import BlockBlobService
+from azure.storage.blob import BlobServiceClient
 
 PUNKT_SENTENCE_TOKENIZER_BLOBURL = os.environ.get('NltkPunktSentenceTokenizer')
 STOPWORDS_ENGLISH_SET_BLOBURL = os.environ.get('NltkStopWords')
@@ -26,11 +25,14 @@ container_models = "ldamodel"
 def classify(container_name, num_topics):
     nltk.download('wordnet')
     # List Blobs in the container
-    block_blob_service = BlockBlobService(account_name=GUTENBERG_BLOB_ACCOUNT_NAME, 
-                                          account_key=GUTENBERG_BLOB_ACCOUNT_KEY) 
+    blob_service_client = BlobServiceClient(
+        account_url=f"https://{GUTENBERG_BLOB_ACCOUNT_NAME}.blob.core.windows.net",
+        credential={"account_name": f"{GUTENBERG_BLOB_ACCOUNT_NAME}", "account_key":f"{GUTENBERG_BLOB_ACCOUNT_KEY}"}
+        )
+    container_client = blob_service_client.get_container_client(container=container_name)
     
     logging.info("Listing blobs in the container...")
-    generator = block_blob_service.list_blobs(container_name)
+    generator = container_client.list_blobs()
     data = [] 
     doc_map = {} 
     doc_id = 1
@@ -38,11 +40,10 @@ def classify(container_name, num_topics):
     # First level data cleaning
     for blob in generator:
         logging.info("Blob name: " + blob.name)
-        readblob = block_blob_service.get_blob_to_bytes(container_name, # name of the container
-                                                        blob.name)
+        readblob = container_client.download_blob(blob=blob.name)
         if blob.name != "README":
             doc_map[doc_id] = blob.name
-            blob_content  = str(readblob.content)
+            blob_content  = str(readblob.readall())
             raw = blob_content.replace('\n','').replace('\r','').replace('\r\n','')
             cleaned_raw = raw.replace('\\r\\n','')
             data.append(cleaned_raw)
@@ -59,8 +60,9 @@ def classify(container_name, num_topics):
     pickled_docmap = pickle.dumps(doc_map)
 
     # Store token data and document map for gensim
-    block_blob_service.create_blob_from_bytes(container_models, "token_data", pickled_token_data)
-    block_blob_service.create_blob_from_bytes(container_models, "docmap", pickled_docmap)
+    container_models_client = blob_service_client.get_container_client(container=container_models)
+    container_models_client.upload_blob(name="token_data", data=pickled_token_data)
+    container_models_client.upload_blob(name="docmap", data=pickled_docmap)
 
     dictionary = corpora.Dictionary(token_data)
     corpus = [dictionary.doc2bow(text) for text in token_data]
@@ -68,7 +70,7 @@ def classify(container_name, num_topics):
     # Train LDA Model
     ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics = num_topics, id2word=dictionary, passes=10)
     pickled_ldamodel = pickle.dumps(ldamodel)
-    block_blob_service.create_blob_from_bytes(container_models, 'ldamodel', pickled_ldamodel)
+    container_models_client.upload_blob(name='ldamodel', data=pickled_ldamodel)
 
     # Construct LDA Blob URL
     lda_model_url = "https://" + GUTENBERG_BLOB_ACCOUNT_NAME + ".blob.core.windows.net/" + container_models + "/" + "ldamodel"
