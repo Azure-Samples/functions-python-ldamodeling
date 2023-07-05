@@ -1,6 +1,6 @@
 azure-functions==1.0.0a4
 azure-functions-worker==1.0.0a4
-grpcio==1.14.2
+grpcio==1.53.0
 grpcio-tools==1.14.2
 protobuf==3.6.1
 six==1.11.0
